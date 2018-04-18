@@ -7,12 +7,13 @@ namespace _Player {
 
 		[SerializeField] GameObject FPSController;
 		[SerializeField] GameObject BodyController;
+		[SerializeField] Vector3 defaultPosition = new Vector3(0f, -0.3f, -2.0f);
 
 		public static int walkSpeed = 10;
 		public static int runSpeed = 20;
 
 		public bool is2DActive = false;
-		public static Vector3 TmpPosition = new Vector3(0f, 0f, 0f);
+		public static Vector3 TmpPosition = new Vector3(0f, 0.3f, -2.0f);
 
 		private GameObject _currentControllerRef;
 
@@ -33,10 +34,15 @@ namespace _Player {
 		}
 
 		public void setPlayerPerspective(bool is2DMode) {
+			Transform transform = gameObject.transform;
 			GameObject controller = is2DMode ? BodyController : FPSController;
 			Destroy(_currentControllerRef);
 			_currentControllerRef = Instantiate(controller, TmpPosition, Quaternion.identity) as GameObject;
-			_currentControllerRef.transform.parent = gameObject.transform;
+			_currentControllerRef.transform.parent = transform;
+
+			if (is2DMode) {
+                _currentControllerRef.transform.position = new Vector3(TmpPosition.x, TmpPosition.y, defaultPosition.z);
+			}
 		}
 	}
 }
