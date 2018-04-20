@@ -5,15 +5,19 @@ using UnityEngine;
 namespace _Player {
 	public class PlayerManager : MonoBehaviour {
 
+        [SerializeField, Range(1, 50)] static public int walkSpeed= 20;
+        [SerializeField, Range(1, 50)] static public int runSpeed = 20;
+        [SerializeField, Range(1, 50)] static public float jumpSpeed = 15f;
+		[SerializeField] static public float gravity = 40f;
+		// Position to keep track of player position between views
+		public static Vector3 TmpPosition = new Vector3(0f, 0.3f, -2.0f);
+
 		[SerializeField] GameObject FPSController;
 		[SerializeField] GameObject BodyController;
+		[SerializeField] bool isViewForced = false;
+		[SerializeField] public bool is2DActive = false;
+		[SerializeField] bool isDefaultPositionIsActive = false;
 		[SerializeField] Vector3 defaultPosition = new Vector3(0f, -0.3f, -2.0f);
-
-		public static int walkSpeed = 10;
-		public static int runSpeed = 20;
-
-		public bool is2DActive = false;
-		public static Vector3 TmpPosition = new Vector3(0f, 0.3f, -2.0f);
 
 		private GameObject _currentControllerRef;
 
@@ -21,11 +25,15 @@ namespace _Player {
 		void Start () {
 			GameObject.Find("DefaultCamera").SetActive(false);
 			setPlayerPerspective(is2DActive);
+			if (isDefaultPositionIsActive)
+                _currentControllerRef.transform.position = defaultPosition;
 		}
-		
+
 		// Update is called once per frame
 		void Update () {
 			// If Shift is pressed, activate the 3D mode
+			if (isViewForced) return;
+
 			bool switcherModeIsPressed = !Input.GetKey(KeyCode.LeftShift);
 			if (is2DActive != switcherModeIsPressed) {
 				is2DActive = switcherModeIsPressed;

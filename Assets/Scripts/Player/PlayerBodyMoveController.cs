@@ -17,10 +17,16 @@ namespace _Player {
 			float deltaTime = Time.deltaTime;
 			CharacterController controller = GetComponent<CharacterController>();
 
-			// Moving our player
-			moveDirection = new Vector3(Horizontal, 0, 0);
-			moveDirection.x *= PlayerManager.walkSpeed;
+            // Moving even when is jumping
+            moveDirection = new Vector3(Horizontal, moveDirection.y, 0);
+            // Moving forward our player
+            moveDirection.x *= PlayerManager.walkSpeed;
 
+            if (controller.isGrounded && Input.GetKey(KeyCode.Space)) {
+                moveDirection.y =  PlayerManager.jumpSpeed;
+            }
+
+			moveDirection.y -= PlayerManager.gravity * Time.deltaTime;
 			controller.Move(moveDirection * deltaTime);
 		}
 
