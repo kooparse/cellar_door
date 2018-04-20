@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace _Player {
-	public class PlayerTrackingController : MonoBehaviour {
+  public class PlayerTrackingController : MonoBehaviour {
 
-		public GameObject target;
+    public GameObject target;
 
-		// Use this for initialization
-		void Start () {
+    // Use this for initialization
+    void Start() {
 
 
-		}
+    }
 
-		// Update is called once per frame
-		void Update () {
-			Vector3 currentPosition =  gameObject.transform.position;
-			Vector3 targetPosition = target.transform.position;
+    // Update is called once per frame
+    void Update() {
+      Vector3 currentPosition = gameObject.transform.position;
+      Vector3 targetPosition = target.transform.position;
 
-			gameObject.transform.position = new Vector3(
-				targetPosition.x,
-				currentPosition.y,
-				currentPosition.z
-			);
-		}
-	}
+      gameObject.transform.position = new Vector3(
+          targetPosition.x,
+          currentPosition.y,
+          currentPosition.z
+      );
+    }
+  }
 }
