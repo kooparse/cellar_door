@@ -44,6 +44,7 @@ namespace _Player {
     public void setPlayerPerspective(bool is2DMode) {
       Transform transform = gameObject.transform;
       GameObject controller = is2DMode ? BodyController : FPSController;
+
       Destroy(_currentControllerRef);
       _currentControllerRef = Instantiate(controller, TmpPosition, Quaternion.identity) as GameObject;
       _currentControllerRef.transform.parent = transform;

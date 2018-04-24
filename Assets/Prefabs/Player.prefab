@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4218160456224442}
   - component: {fileID: 114800930820258020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,4 +55,7 @@ MonoBehaviour:
     type: 2}
   BodyController: {fileID: 1229483103951348, guid: 8fc69638d1640429190ec6ee658472da,
     type: 2}
+  isViewForced: 0
   is2DActive: 1
+  isDefaultPositionIsActive: 0
+  defaultPosition: {x: 0, y: -0.3, z: -2}

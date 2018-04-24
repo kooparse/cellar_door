@@ -20,7 +20,7 @@ namespace _Player {
 
       gameObject.transform.position = new Vector3(
           targetPosition.x,
-          currentPosition.y,
+          targetPosition.y + 1.5f,
           currentPosition.z
       );
     }
